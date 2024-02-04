@@ -1,0 +1,59 @@
+@font-face {
+    font-family: joystixMono;
+    src: url(fonts/Joystix\ W00\ Monospace.ttf);
+}
+
+@font-face {
+    font-family: arcadeClassic;
+    src: url(fonts/ARCADECLASSIC.TTF);
+}
+
+body {
+    margin: 0px;
+    height: 100vh;
+
+    background-image:url("img/3162.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Game{
+    margin: 0px;
+    /* background-color: #B2FFFF80; */
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: center;
+    flex: .25 1 auto;
+}
+
+.Game h2,.Title{
+    padding: 0px;
+    margin: 0px;
+    color: yellow;
+    font-family: joystixMono;
+    font-size: 1rem;
+}
+
+.Title{
+    padding-top:  10%;
+    padding-bottom: 10%;
+    text-align: center;
+    font-size: 2.6rem
+}
+
+.Game button{
+    background-color:hsl(278, 74%, 68%);
+    color: hsl(276, 100%, 28%);
+    border: 2px solid black;
+    border-radius: 4px;
+    font-family: joystixMono;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
