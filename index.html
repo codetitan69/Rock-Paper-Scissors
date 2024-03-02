@@ -5,14 +5,46 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link rel="stylesheet" href="styles.css">
-        <script src="script.js"></script>
+        <script src="script.js" defer></script>
     </head>
     <body>
         <h1 class="Title">ROCK PAPER SCISSOR</h1>
-        <div class="Game">
+        
+        <div class="Intro hide">
             <h2>Play against computer</h2>
             <h2>First to score 5 wins!</h2>
             <button>play!</button>
+        </div>
+
+        <div class="Game hide">
+            <div class="scoresAndSelectedChoices">
+                <div class="Player">
+                    <div>Player</div>
+                    <div class="Score">0</div>
+                </div>
+                
+                <img src="" alt="" width="10%" class="SelectedPlayerChoice">
+
+                <div class="VS">VS</div>
+                
+                <img src="" alt="" width="10%" class="SelectedComputerChoice">
+                
+                <div class="Computer">
+                    <div>Computer</div>
+                    <div class="Score">0</div>
+                </div>
+            </div>
+            <div class="availableChoices">
+                <img src="img/Paper.gif" alt="Paper" width="20%">
+                <img src="img/Rock.gif" alt="Rock" width="20%">
+                <img src="img/Scissor.gif" alt="Scissor" width="20%">
+            </div>
+        </div>
+
+        
+        <div class="endScreen">
+            <div class="endMessage">You Win!</div>
+            <button class="playAgain">Play<br>Again</button>
         </div>
     </body>
 </html>

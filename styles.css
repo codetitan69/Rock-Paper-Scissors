@@ -8,6 +8,12 @@
     src: url(fonts/ARCADECLASSIC.TTF);
 }
 
+*,*::after,*::before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     margin: 0px;
     height: 100vh;
@@ -23,7 +29,7 @@ body {
     align-items: center;
 }
 
-.Game{
+.Intro{
     margin: 0px;
     /* background-color: #B2FFFF80; */
     display: flex;
@@ -33,27 +39,134 @@ body {
     flex: .25 1 auto;
 }
 
-.Game h2,.Title{
+.Intro h2,.Title{
     padding: 0px;
     margin: 0px;
     color: yellow;
     font-family: joystixMono;
-    font-size: 1rem;
+    font-size: 1.3rem;
 }
 
 .Title{
-    padding-top:  10%;
-    padding-bottom: 10%;
+    padding-top:  80px;
+    padding-bottom: 80px;
     text-align: center;
-    font-size: 2.6rem
+    font-size: 3rem
 }
 
-.Game button{
-    background-color:hsl(278, 74%, 68%);
-    color: hsl(276, 100%, 28%);
+.Intro button{
+    background-color:hsl(278, 75%, 68%);
+    color: hsl(276, 87%, 12%);
     border: 2px solid black;
     border-radius: 4px;
     font-family: joystixMono;
-    padding-top: 3px;
-    padding-bottom: 3px;
+    padding: 7px 8px;
+    cursor: pointer;
+}
+
+.Intro button:hover{
+    background-color: hsl(278, 75%, 65%);
+}
+
+.Intro button:active{
+    background-color:hsl(278, 75%, 68%);
+}
+
+.hide{
+    display: none !important;
+}
+
+/* || Game */
+
+.Game{
+    background-color: hsla(278, 53%, 32%, 0.634);
+    height: 60%;
+    width: 90%;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    gap: 1rem;
+    font-family: joystixMono;
+    color: yellow;
+    justify-content: space-between;
+    flex-basis: 35%;
+    gap: 15vh;
+}
+
+.availableChoices{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.availableChoices img{
+    background-color:hsl(278, 77%, 81%);
+    max-height: 100%;
+    width: 15%;
+    border-radius: 4px;
+    border: black 1.5px solid;
+    cursor: pointer; 
+}
+
+.scoresAndSelectedChoices{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.VS{
+    align-self: flex-start;
+    margin-top: 3.5%;
+}
+
+.scoresAndSelectedChoices .Player,
+.scoresAndSelectedChoices .Computer{
+    margin-top: 2.8%;
+}
+
+/* || End */
+
+.endScreen{
+    height: 25vh;
+    width: 60%;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.endMessage{
+    font-size: 3.2rem;
+    font-family: joystixMono;
+    margin-bottom: 50px;
+}
+
+.lose{
+    color: red;
+}
+
+.win{
+    color: green;
+}
+
+.playAgain{
+    background-color:hsl(278, 75%, 68%);
+    color: hsl(276, 87%, 12%);
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 5px 30px;
+    cursor: pointer;
+    font-family: joystixMono;
+}
+
+.endScreen button:hover{
+    background-color: hsl(278, 75%, 65%);
+}
+
+.endScreen button:active{
+    background-color:hsl(278, 75%, 68%);
 }
