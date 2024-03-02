@@ -65,33 +65,33 @@ function startGame() {
 
         if (Number(computerScore.textContent) > 4 || Number(userScore.textContent) > 4) {
 
+            setTimeout(() => { 
+                gameSection.classList.add("hide");
+    
+                userScore.textContent = 0;
+                computerScore.textContent = 0;
+                userChoiceDisplay.setAttribute("src",``);
+                computerChoiceDisplay.setAttribute("src",``);
+                
+                endScreen.classList.remove("hide");
+            },500)
+    
+
             if (Number(userScore.textContent) > Number(computerScore.textContent)){
                 endMsg.textContent = "You Win!"
-                endMsg.classList.toggle("win")
+                endMsg.classList.add("win")
             }else{
                 endMsg.textContent = "You Lose!"
-                endMsg.classList.toggle("lose")
+                endMsg.classList.add("lose")
             }
-
-            setTimeout(() => { 
-            gameSection.classList.toggle("hide");
-
-            userScore.textContent = 0;
-            computerScore.textContent = 0;
-            userChoiceDisplay.setAttribute("src",``);
-            computerChoiceDisplay.setAttribute("src",``);
-            
-            endScreen.classList.toggle("hide");
-            },500)
-
         }
     }
 }
 
 introSectionPlayButton.addEventListener("click",
     () => {
-        introSection.classList.toggle("hide");
-        gameSection.classList.toggle("hide");
+        introSection.classList.add("hide");
+        gameSection.classList.remove("hide");
         startGame()
     }
 )
@@ -102,8 +102,8 @@ playAgainBtn.addEventListener("click",
         endMsg.classList.remove("win")
         endMsg.classList.remove("lose")
         
-        gameSection.classList.toggle("hide");
-        endScreen.classList.toggle("hide");
+        endScreen.classList.add("hide");
+        gameSection.classList.remove("hide");
 
         startGame()
     }
