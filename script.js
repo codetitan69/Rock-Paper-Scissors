@@ -47,11 +47,11 @@ for (let i of availableChoices) {
             if ( scores[0] > 4 || scores[1] > 4) {
                 if (scores[0] > scores[1]) {
                     endScreenMsg.textContent = "You Win!";
-                    endScreenMsg.classList.add("lose");
+                    endScreenMsg.classList.add("win");
                     
                 } else{
                     endScreenMsg.textContent = "You Lose!";
-                    endScreenMsg.classList.add("win");
+                    endScreenMsg.classList.add("lose");
                 }
                 
                 setTimeout(() => {
