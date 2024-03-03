@@ -1,110 +1,123 @@
-let introSection = document.querySelector(".Intro");
-let introSectionPlayButton = document.querySelector(".Intro button");
+// Intro Elements
+let intro = document.querySelector(".Intro");
+let playButton = document.querySelector(".Intro button")
 
-let gameSection = document.querySelector(".Game");
 
+// Game Elements
+let game = document.querySelector(".Game");
+
+let availableChoices = document.querySelectorAll(".availableChoices img");
+
+let playerScoreElement = document.querySelector(".Player .Score");
+let computerScoreElement = document.querySelector(".Computer .Score");
+
+let playerChoiceImg = document.querySelector(".scoresAndSelectedChoices .SelectedPlayerChoice");
+let computerChoiceImg = document.querySelector(".scoresAndSelectedChoices .SelectedComputerChoice");
+
+
+// End Screen ,Msg
 let endScreen = document.querySelector(".endScreen");
-let endMsg = document.querySelector(".endScreen .endMessage");
-let playAgainBtn = document.querySelector(".endScreen .playAgain");
-
-function startGame() {
-    let userScore = document.querySelector(".Player .Score");
-    let computerScore = document.querySelector(".Computer .Score");
-
-    let userChoiceList = document.querySelectorAll(".availableChoices img");
-
-    let userChoiceDisplay = document.querySelector(".SelectedPlayerChoice");
-    let computerChoiceDisplay = document.querySelector(".SelectedComputerChoice");
+let endScreenMsg = document.querySelector(".endScreen .endMessage");
+let playAgainBtn = document.querySelector(".endScreen .playAgain")
 
 
-    for (let i of userChoiceList) {
-        i.addEventListener("click",
-        () => {
-            gameRound(i.getAttribute("alt"))
-        }
-        )
-    }
-
-
-    function getComputerChoice(ChoiceList) {
-        let rn = Math.floor((Math.random() * 3))
-
-        return ChoiceList[rn]
-    }
-    
-
-    function gameRound(userChoice){
-        let computerChoice = getComputerChoice(userChoiceList).getAttribute("alt");
-
-        userChoiceDisplay.setAttribute("src",`img/${userChoice}.gif`);
-        computerChoiceDisplay.setAttribute("src",`img/${computerChoice}.gif`);
-
-        if (userChoice == "Rock") {
-            if (computerChoice == "Paper") {
-                computerScore.textContent = Number(computerScore.textContent) + 1
-            }else if(computerChoice == "Scissor"){
-                userScore.textContent = Number(userScore.textContent) + 1
-            }
-        }
-
-        if (userChoice == "Paper") {
-            if (computerChoice == "Scissor") {
-                computerScore.textContent = Number(computerScore.textContent) + 1
-            }else if(computerChoice == "Rock"){
-                userScore.textContent = Number(userScore.textContent) + 1
-            }
-        }
-
-        if (userChoice == "Scissor") {
-            if (computerChoice == "Rock") {
-                computerScore.textContent = Number(computerScore.textContent) + 1
-            }else if(computerChoice == "Paper"){
-                userScore.textContent = Number(userScore.textContent) + 1
-            }
-        }
-
-        if (Number(computerScore.textContent) > 4 || Number(userScore.textContent) > 4) {
-
-            setTimeout(() => { 
-                gameSection.classList.add("hide");
-    
-                userScore.textContent = 0;
-                computerScore.textContent = 0;
-                userChoiceDisplay.setAttribute("src",``);
-                computerChoiceDisplay.setAttribute("src",``);
-                
-                endScreen.classList.remove("hide");
-            },500)
-    
-
-            if (Number(userScore.textContent) > Number(computerScore.textContent)){
-                endMsg.textContent = "You Win!"
-                endMsg.classList.add("win")
-            }else{
-                endMsg.textContent = "You Lose!"
-                endMsg.classList.add("lose")
-            }
-        }
-    }
-}
-
-introSectionPlayButton.addEventListener("click",
+playButton.addEventListener("click",
     () => {
-        introSection.classList.add("hide");
-        gameSection.classList.remove("hide");
-        startGame()
+        intro.classList.add("hide");
+        game.classList.remove("hide");
     }
-)
+);
 
 playAgainBtn.addEventListener("click",
     () => {
-        endMsg.textContent = ""
-        endMsg.classList.remove("win")
-        endMsg.classList.remove("lose")
-        
-        endScreen.classList.add("hide");
-        gameSection.classList.remove("hide");
+        endScreen.classList.add("hide")
+        endScreenMsg.classList.remove("win")
+        endScreenMsg.classList.remove("lose")
 
-        startGame()
+        game.classList.remove("hide")
     }
 )
+
+for (let i of availableChoices) {
+    i.addEventListener("click",
+        () => {
+
+            let scores = startRound(i.getAttribute("alt"));
+
+            if ( scores[0] > 4 || scores[1] > 4) {
+                if (scores[0] > scores[1]) {
+                    endScreenMsg.textContent = "You Win!";
+                    endScreenMsg.classList.add("lose");
+                    
+                } else{
+                    endScreenMsg.textContent = "You Lose!";
+                    endScreenMsg.classList.add("win");
+                }
+                
+                setTimeout(() => {
+                    game.classList.add("hide");
+                    endScreen.classList.remove("hide")
+
+                    playerScoreElement.textContent = "0"
+                    computerScoreElement.textContent = "0"
+                }, 450);
+
+            }
+        }
+    )
+}
+
+
+    
+function getComputerChoice() {
+    let rn = Math.floor(Math.random() * 3); 
+
+    return availableChoices[rn];
+}
+
+
+function startRound(userChoice) {
+    let playerScore = Number(playerScoreElement.textContent);
+    let computerScore = Number(computerScoreElement.textContent);
+
+
+    let computerChoiceElement = getComputerChoice();
+    let computerChoice = computerChoiceElement.getAttribute("alt")
+
+    playerChoiceImg.setAttribute("src",`img/${userChoice}.gif`)
+    computerChoiceImg.setAttribute("src",`img/${computerChoice}.gif`)
+
+
+    if (userChoice == "Scissor"){
+        if (computerChoice == "Rock") {
+            computerScoreElement.textContent = computerScore + 1
+
+        } else if(computerChoice == "Paper"){
+            playerScoreElement.textContent = playerScore + 1
+        }
+    }
+
+    if (userChoice == "Rock"){
+        if (computerChoice == "Paper") {
+            computerScoreElement.textContent = computerScore + 1
+
+        } else if(computerChoice == "Scissor") {
+            playerScoreElement.textContent = playerScore + 1
+        }
+    }
+
+    if (userChoice == "Paper"){
+        if (computerChoice == "Scissor") {
+            computerScoreElement.textContent = computerScore + 1
+
+        } else if(computerChoice == "Rock"){
+            playerScoreElement.textContent = playerScore + 1
+        }
+    }
+
+    let newplayerScore = Number(playerScoreElement.textContent);
+    let newcomputerScore = Number(computerScoreElement.textContent);
+
+    return [newplayerScore,newcomputerScore]
+
+}
